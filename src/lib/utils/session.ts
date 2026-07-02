@@ -19,6 +19,7 @@ function formatDayLabel(dateKey: string): string {
         weekday: "long",
         day: "numeric",
         month: "long",
+        year: "numeric",
         timeZone: "UTC"
     })
 }
