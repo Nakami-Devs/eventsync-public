@@ -46,7 +46,7 @@ export default function PlanningGrid({ eventId }: { eventId: string }) {
                           title={session.title}
                           start={session.start_time}
                           end={session.end_time}
-                          room={session.room.name}
+                          room={session.room_name}
                           speaker={getSpeakerNames(session.speakers)}
                           isLive={isSessionLive(session.start_time, session.end_time)}
                         />
