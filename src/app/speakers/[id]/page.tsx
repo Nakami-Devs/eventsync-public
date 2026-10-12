@@ -118,7 +118,7 @@ export default function SpeakerDetailPage() {
     <div className="min-h-screen text-[var(--foreground)]" style={{ background: "var(--page-gradient)" }}>
       <Navbar />
 
-      <div className="max-w-4xl mx-auto px-6 pt-24 pb-12">
+      <div className="max-w-4xl mx-auto px-6 pt-16 pb-12">
         <div className={isDark ? "bg-slate-900/95 rounded-2xl shadow-xl p-8" : "bg-white/70 backdrop-blur-xl rounded-2xl shadow-xl p-8"}>
 
           <div className="flex flex-col md:flex-row items-center gap-6">
