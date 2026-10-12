@@ -5,8 +5,8 @@ export function isSessionLive(start: string, end: string): boolean {
     return now >= new Date(start).getTime() && now <= new Date(end).getTime()
 }
 
-export function getSpeakerNames(speakers: Array<{ speaker: { full_name: string } }>): string {
-    return speakers.map(s => s.speaker.full_name).join(', ')
+export function getSpeakerNames(speakers: Array<{ id: string, full_name: string }>): string {
+    return speakers?.map(s => s.full_name).join(', ')
 }
 
 function toDateKey(iso: string): string {
@@ -19,6 +19,7 @@ function formatDayLabel(dateKey: string): string {
         weekday: "long",
         day: "numeric",
         month: "long",
+        year: "numeric",
         timeZone: "UTC"
     })
 }
@@ -39,6 +40,8 @@ export function groupSessionsByDayAndRoom(sessions: Session[]): DayGroup[]{
     const map = new Map<string, Map<string, Session[]>>();
 
     for(const session of sessions){
+        if (!session.room_name) continue
+
         const dateKey = toDateKey(session.start_time)
         if(!map.has(dateKey)) map.set(dateKey, new Map())
 
@@ -54,7 +57,7 @@ export function groupSessionsByDayAndRoom(sessions: Session[]): DayGroup[]{
         label: formatDayLabel(dateKey),
         rooms: Array.from(roomMap.entries()).map(([roomId, sessions]) => ({
             roomId,
-            roomName: sessions[0].room.name,
+            roomName: sessions[0].room_name,
             sessions: sessions.sort(
                 (a, b) => new Date(a.start_time).getTime() - new Date(b.start_time).getTime()
             ),

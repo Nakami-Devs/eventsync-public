@@ -30,6 +30,6 @@ export interface Session {
     end_time: string;
     id_event: string;
     id_room: string;
-    room: Room;
-    speakers: Array<{ speaker: Speaker }>;
+    room_name: string;
+    speakers: Array<{ id: string, full_name: string }>;
 }
