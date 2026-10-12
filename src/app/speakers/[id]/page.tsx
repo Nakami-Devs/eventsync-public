@@ -120,7 +120,7 @@ export default function SpeakerDetailPage() {
 
       <div className="max-w-4xl mx-auto px-6 pt-24 pb-12">
         <div className={isDark ? "bg-slate-900/95 rounded-2xl shadow-xl p-8" : "bg-white/70 backdrop-blur-xl rounded-2xl shadow-xl p-8"}>
-        
+
           <div className="flex flex-col md:flex-row items-center gap-6">
             <div className="relative w-32 h-32 rounded-full overflow-hidden bg-gradient-to-r from-violet-500 to-fuchsia-500 p-1">
               <div className="w-full h-full rounded-full bg-white p-1">
@@ -218,7 +218,6 @@ export default function SpeakerDetailPage() {
                 ).map(({ event, sessions }) => (
                   <div key={event.id} className={`rounded-2xl overflow-hidden border ${isDark ? "border-slate-700" : "border-slate-200"}`}>
 
-                    {/* Header événement */}
                     <Link href={`/events/${event.id}`}>
                       <div className={`flex items-center justify-between p-4 cursor-pointer transition ${isDark ? "bg-slate-800 hover:bg-slate-700" : "bg-violet-50 hover:bg-violet-100"}`}>
                         <div>
@@ -237,10 +236,9 @@ export default function SpeakerDetailPage() {
                       </div>
                     </Link>
 
-                    {/* Liste des sessions */}
                     <div className={`divide-y ${isDark ? "divide-slate-700" : "divide-slate-100"}`}>
                       {sessions.map((session) => (
-                        <div key={session.id} className={`px-4 py-3 ${isDark ? "bg-slate-900/50" : "bg-white/80"}`}>
+                        <div key={session.id} className={`px-4 py-3 ${isDark ? "bg-slate-900/50" : "bg-white/80"} cursor-pointer transition ${isDark ? "bg-slate-800 hover:bg-slate-700" : "bg-violet-50 hover:bg-violet-100"}`}>
                           <p className="font-medium text-sm text-[var(--foreground)]">{session.title}</p>
                           <div className="flex items-center gap-3 mt-1 flex-wrap">
                             <span className="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1">
