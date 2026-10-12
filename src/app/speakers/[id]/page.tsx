@@ -5,7 +5,7 @@ import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { useTheme } from "next-themes";
 import Navbar from "@/components/navbar/Navbar";
-import { MapPin, ExternalLink, ArrowLeft, Mic, Calendar, Clock } from "lucide-react";
+import { MapPin, ExternalLink, Mic, Calendar, Clock } from "lucide-react";
 
 type Speaker = {
   id: string;
@@ -144,9 +144,7 @@ export default function SpeakerDetailPage() {
           </div>
 
           <div className="flex-1 text-center md:text-left">
-            <h1 className="text-3xl font-bold text-[var(--foreground)]">{speaker.full_name}</h1>
 
-            {/* Badge sessions */}
             <div className="flex items-center gap-2 mt-3 justify-center md:justify-start flex-wrap">
               <span
                 style={{ background: "var(--badge-violet-bg)", color: "var(--badge-violet-text)" }}
