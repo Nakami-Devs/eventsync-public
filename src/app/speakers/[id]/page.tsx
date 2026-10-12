@@ -118,7 +118,7 @@ export default function SpeakerDetailPage() {
     <div className="min-h-screen text-[var(--foreground)]" style={{ background: "var(--page-gradient)" }}>
       <Navbar />
 
-      <div className="max-w-4xl mx-auto px-6 pt-16 pb-12">
+      <div className="max-w-4xl mx-auto px-6 py-12">
         <div className={isDark ? "bg-slate-900/95 rounded-2xl shadow-xl p-8" : "bg-white/70 backdrop-blur-xl rounded-2xl shadow-xl p-8"}>
 
           <div className="flex flex-col md:flex-row items-center gap-6">
@@ -238,19 +238,21 @@ export default function SpeakerDetailPage() {
 
                     <div className={`divide-y ${isDark ? "divide-slate-700" : "divide-slate-100"}`}>
                       {sessions.map((session) => (
-                        <div key={session.id} className={`px-4 py-3 ${isDark ? "bg-slate-900/50" : "bg-white/80"} cursor-pointer transition ${isDark ? "bg-slate-800 hover:bg-slate-700" : "bg-violet-50 hover:bg-violet-100"}`}>
-                          <p className="font-medium text-sm text-[var(--foreground)]">{session.title}</p>
-                          <div className="flex items-center gap-3 mt-1 flex-wrap">
-                            <span className="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1">
-                              <Clock size={11} />
-                              {new Date(session.start_time).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })} — {new Date(session.end_time).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}
-                            </span>
-                            <span className="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1">
-                              <MapPin size={11} className="text-blue-400" />
-                              {session.room.name}
-                            </span>
+                        <Link href={`/events/${event.id}/sessions/${session.id}`} key={session.id}>
+                          <div key={session.id} className={`px-4 py-3 ${isDark ? "bg-slate-900/50" : "bg-white/80"} cursor-pointer transition ${isDark ? "bg-slate-800 hover:bg-slate-700" : "bg-violet-50 hover:bg-violet-100"}`}>
+                            <p className="font-medium text-sm text-[var(--foreground)]">{session.title}</p>
+                            <div className="flex items-center gap-3 mt-1 flex-wrap">
+                              <span className="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1">
+                                <Clock size={11} />
+                                {new Date(session.start_time).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })} — {new Date(session.end_time).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}
+                              </span>
+                              <span className="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1">
+                                <MapPin size={11} className="text-blue-400" />
+                                {session.room.name}
+                              </span>
+                            </div>
                           </div>
-                        </div>
+                        </Link>
                       ))}
                     </div>
                   </div>
