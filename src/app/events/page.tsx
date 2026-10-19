@@ -1,6 +1,6 @@
 import Navbar from "@/components/navbar/Navbar";
 import EventCard from "@/components/events/EventCard";
-import {getEvents} from "@/lib/api/events";
+import { getEvents } from "@/lib/api/events";
 import PageHeader from "@/components/PageHeader";
 import { getFavoriteEventIds } from "@/lib/favorites-server";
 
@@ -13,16 +13,16 @@ export default async function EventPage() {
     ])
 
     return (
-        <main className="min-h-screen p-8" style={{ background: "var(--page-gradient)",color: "var(--foreground)",}}>
-            <Navbar/>
+        <main className="min-h-screen p-8" style={{ background: "var(--page-gradient)", color: "var(--foreground)", }}>
+            <Navbar />
             <div className="max-w-6xl mx-auto mt-12">
-                <PageHeader title="Événements" count={events.length} singular="événement"/>
+                <PageHeader title="Événements" count={events.length} singular="événement" />
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {events.map((event) => (
-                        <EventCard 
-                        key={event.id} 
-                        event={event} 
-                        isFavorite={favoriteIds.has(event.id)}
+                        <EventCard
+                            key={event.id}
+                            event={event}
+                            isFavorite={favoriteIds.has(event.id)}
                         />
                     ))}
                 </div>
