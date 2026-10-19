@@ -3,6 +3,8 @@ import EventCard from "@/components/events/EventCard";
 import PageHeader from "@/components/PageHeader";
 import { getFavorites } from "@/lib/api/favorites";
 
+export const dynamic = "force-dynamic";
+
 export default async function FavoritesPage(){
     const favorites = await getFavorites();
     const events = favorites.map(
@@ -25,6 +27,7 @@ export default async function FavoritesPage(){
                         <EventCard
                             key={event.id}
                             event={event}
+                            isFavorite
                         />
                     ))
                 }

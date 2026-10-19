@@ -1,8 +1,9 @@
 "use client";
 
 import { Heart } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { addFavorite, removeFavorite } from "@/lib/api/favorites";
+import { useRouter } from "next/navigation";
 
 interface FavoriteButtonProps {
     eventId: string;
@@ -13,8 +14,11 @@ export default function FavoriteButton({
     eventId,
     initialFavorite = false
 }: FavoriteButtonProps) {
+    const router = useRouter();
     const [favorite, setFavorite] = useState(initialFavorite);
     const [loading, setLoading] = useState(false);
+
+    useEffect(() => setFavorite(initialFavorite), [initialFavorite]);
 
     async function handleClick(
         e: React.MouseEvent
@@ -25,7 +29,7 @@ export default function FavoriteButton({
             return;
         }
         setLoading(true);
-
+        try{
         if(favorite){
             await removeFavorite(eventId);
             setFavorite(false);
@@ -33,7 +37,12 @@ export default function FavoriteButton({
             await addFavorite(eventId);
             setFavorite(true);
         }
-        setLoading(false);
+        router.refresh();
+        } catch(err){
+            console.error(err);
+        } finally{
+            setLoading(false);
+        }
     }
 
     return (
