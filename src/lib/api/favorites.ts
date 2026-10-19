@@ -36,6 +36,7 @@ export async function addFavorite(eventId:string){
             })
         }
     );
+    if(!res.ok && res.status !== 409) throw new Error("Erreur d'ajout de l'élément au favoris")
     return res.json();
 }
 
@@ -46,5 +47,6 @@ export async function removeFavorite(eventId:string){
             method:"DELETE"
         }
     );
+    if(!res.ok) throw new Error("Erreur de suppression du favoris")
     return res.json();
 }

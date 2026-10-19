@@ -5,9 +5,10 @@ import FavoriteButton from "./FavoriteButton";
 
 interface EventCardProps {
     event: EventItem;
+    isFavorite?: boolean;
 }
 
-export default async function EventCard({event}: EventCardProps) {
+export default function EventCard({event, isFavorite = false}: EventCardProps) {
     return (
         <Link href={`/events/${event.id}`}>
             <div className="relative flex flex-col gap-3 bg-[var(--card-bg)] border border-[var(--card-border)] border-t-6 border-t-purple-800 
@@ -28,7 +29,7 @@ export default async function EventCard({event}: EventCardProps) {
                         <p>{event.sessions.length} sessions</p>
                     </div>
                 </div>
-                <FavoriteButton eventId={event.id}/>
+                <FavoriteButton eventId={event.id} initialFavorite={isFavorite}/>
             </div>
         </Link>
 
