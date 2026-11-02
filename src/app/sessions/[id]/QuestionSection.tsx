@@ -18,12 +18,26 @@ type Props = {
 
 function relativeTime(dateString: string): string {
   if (!dateString) return ''
-  const diff    = Date.now() - new Date(dateString).getTime()
-  const minutes = Math.floor(diff / 60000)
+  const diff = Date.now() - new Date(dateString).getTime()
+  if(Number.isNaN(diff)) return ''
+
+  const MS_PER_MINUTE = 60 * 1000
+
+  const minutes = Math.floor(diff / MS_PER_MINUTE)
   if (minutes < 1)  return "À l'instant"
   if (minutes < 60) return `Il y a ${minutes}min`
+
   const hours = Math.floor(minutes / 60)
-  return `Il y a ${hours}h`
+  if (hours < 24) return `Il y a ${hours}h`
+
+  const days = Math.floor(hours/24)
+  if (days < 30) return `Il y a ${days}j`
+
+  const months = Math.floor(days/30)
+  if(months < 12) return `Il y a ${months} mois`
+
+  const years = Math.floor(months/12)
+  return `Il y a ${years} ${years === 1 ? "an" : "ans"}`
 }
 
 export default function QuestionSection({ sessionId, initialQuestions }: Props) {
