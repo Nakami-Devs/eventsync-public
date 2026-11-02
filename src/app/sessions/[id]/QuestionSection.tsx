@@ -13,6 +13,7 @@ type Question = {
 type Props = {
   sessionId:        string
   initialQuestions: Question[]
+  readOnly?: boolean
 }
 
 
@@ -40,7 +41,7 @@ function relativeTime(dateString: string): string {
   return `Il y a ${years} ${years === 1 ? "an" : "ans"}`
 }
 
-export default function QuestionSection({ sessionId, initialQuestions }: Props) {
+export default function QuestionSection({ sessionId, initialQuestions, readOnly=false }: Props) {
   const [questions, setQuestions] = useState<Question[]>(initialQuestions)
   const [content,   setContent]   = useState('')
   const [name,      setName]      = useState('')
