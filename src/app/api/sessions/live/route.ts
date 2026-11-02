@@ -14,14 +14,15 @@ export async function GET(request: NextRequest) {
     }
     
     if (eventId) {
-      whereCondition.eventId = eventId
+      whereCondition.id_event = eventId
     }
     
     const liveSessions = await prisma.session.findMany({
       where: whereCondition,
       include: {
         event: true,
-        speakers: true,
+        room: true,
+        speakers: { include: { speaker: true } },
         questions: {
           orderBy: {
             upvote_numbers: 'desc'
