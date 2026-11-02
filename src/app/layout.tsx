@@ -17,6 +17,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "EventSync",
   description: "Plateforme de gestion d’événements",
+  icons: {
+    icon: "/EventSync_logo.png",
+  },
 };
 
 export default function RootLayout({
