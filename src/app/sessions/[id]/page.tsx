@@ -184,7 +184,7 @@ export default async function SessionDetailPage({
                       hover:bg-[var(--card-hover)]
                     "
                   >
-                    <Image
+                    <img
                       src={speaker.profile_pic || "/placeholder.png"}
                       alt={speaker.full_name}
                       width={48}
