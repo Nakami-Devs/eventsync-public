@@ -184,7 +184,7 @@ export default async function SessionDetailPage({
                       hover:bg-[var(--card-hover)]
                     "
                   >
-                    <Image
+                    <img
                       src={speaker.profile_pic || "/placeholder.png"}
                       alt={speaker.full_name}
                       width={48}
@@ -208,15 +208,16 @@ export default async function SessionDetailPage({
           </div>
         )}
 
-        {session.is_live ? (
-          <QuestionSection
-            sessionId={session.id}
-            initialQuestions={session.questions}
-          />
-        ) : (
+        {status == "a_venir" ? (
           <p className="text-[color:var(--foreground)]/60 text-sm text-center py-8">
             Les questions seront disponibles pendant la session.
           </p>
+        ) : (
+          <QuestionSection
+            sessionId={session.id}
+            initialQuestions={session.questions}
+            readOnly={status=="termine"}
+          />
         )}
       </div>
     </div>
